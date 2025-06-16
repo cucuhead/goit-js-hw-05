@@ -1,12 +1,17 @@
-const getTotalBalanceByGender = (users,gender) => {
-    return users.reduce((a,c) => {
-      return c.gender===gender?  a+c.balance : a
+// const getTotalBalanceByGender = (users,gender) => {
+//     return users.reduce((a,c) => {
+//       return c.gender===gender?  a+c.balance : a
 
 
         
-    },0)
-}
-
+//     },0)
+// }
+const getTotalBalanceByGender = (users, gender) => {
+    return users
+      .filter(user => user.gender === gender)
+      .map(user => user.balance)
+      .reduce((acc, balance) => acc + balance, 0);
+  };
 
 
 
@@ -50,4 +55,4 @@ const Users = [
 
 console.log(getTotalBalanceByGender(Users, "male")); // 12053
 
-console.log(getTotalBalanceByGender(Users, "female")); // 8863
+console.log(getTotalBalanceByGender(allUsers, "female")); // 8863
